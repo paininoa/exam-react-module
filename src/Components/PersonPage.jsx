@@ -12,12 +12,14 @@ export default () => {
   const lang = useContext(LangContext);
   const trad = {
     "en-US": {
-      sex: "Sex",
+      sex: "Sex:",
       occupation: "Occupation:",
+      age: "Age:",
     },
     "it-IT": {
-      sex: "Sesso",
+      sex: "Sesso:",
       occupation: "Occupazione:",
+      age: "Età:",
     },
   };
 
@@ -50,16 +52,23 @@ export default () => {
 
             <div>
               <p>
+                <strong>{trad[lang].age}</strong>
+              </p>
+              <p>{person.birthday}</p>
+            </div>
+
+            <div>
+              <p>
                 <strong>{trad[lang].sex}</strong>
               </p>
-              <p>{` ${person.gender === 1 ? "F" : "M"}`}</p>
+              <p>{person.gender === 1 ? "F" : "M"}</p>
             </div>
 
             <div>
               <p>
                 <strong>{trad[lang].occupation}</strong>
               </p>
-              <p>{`${person.known_for_department}`}</p>
+              <p>{person.known_for_department}</p>
             </div>
 
             <p>{person.biography}</p>
