@@ -9,17 +9,20 @@ export default ({
 }) => {
   return (
     <div className="card">
-      <h3>{name}</h3>
-      <h4>{occupation}</h4>
-      <p>{sex}</p>
-      <p>{popularity}</p>
-      <ul>{works}</ul>
       <figure>
         <img
           src={`https://image.tmdb.org/t/p/w500${imagePath}`}
           alt={`image ${name}`}
         />
       </figure>
+
+      <div className="card-content">
+        <h3>{name}</h3>
+        <h4>{`Occupation: ${occupation}`}</h4>
+        <p>{`Sex: ${sex}`}</p>
+        <p>{`Popularity: ${popularity}`}</p>
+        <ul>{`Known for: ${works}`}</ul>
+      </div>
     </div>
   );
 };
