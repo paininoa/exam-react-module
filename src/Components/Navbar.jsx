@@ -1,18 +1,31 @@
+import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
+import LangContext from "./LangContext";
 
-export default () => {
+export default ({ selectLang }) => {
+  const lang = useContext(LangContext);
+
+  const trad = {
+    "en-US": { home: "Home", about: "About", search: "Search" },
+    "it-IT": { home: "Casa :)", about: "Chi siamo", search: "Cerca" },
+  };
+
   return (
     <nav className="navbar">
       <menu>
         <NavLink to="/" className="navlink">
-          Home
+          {trad[lang].home}
         </NavLink>
         <NavLink to="/about" className="navlink">
-          About
+          {trad[lang].about}
         </NavLink>
         <NavLink to="/search" className="navlink">
-          Search
+          {trad[lang].search}
         </NavLink>
+        <select onChange={(e) => selectLang(e.target.value)}>
+          <option value="en-US">ENG</option>
+          <option value="it-IT">ITA</option>
+        </select>
       </menu>
     </nav>
   );

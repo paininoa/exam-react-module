@@ -1,23 +1,37 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
+import LangContext from "./LangContext";
 const apiKey = import.meta.env.VITE_API_KEY;
 
 export default () => {
   const { id } = useParams();
-
   const [person, setPerson] = useState([]);
   const [message, setMessage] = useState("");
   console.log({ person });
 
+  const lang = useContext(LangContext);
+  const trad = {
+    "en-US": {
+      sex: "Sex",
+      occupation: "Occupation:",
+    },
+    "it-IT": {
+      sex: "Sesso",
+      occupation: "Occupazione:",
+    },
+  };
+
   useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/person/${id}?api_key=${apiKey}`)
+    fetch(
+      `https://api.themoviedb.org/3/person/${id}?api_key=${apiKey}&language=${lang}`
+    )
       .then((response) => response.json())
       .then((obj) => setPerson(obj))
       .catch((error) => {
         console.error(error);
         setMessage("No person found");
       });
-  }, []);
+  }, [lang]);
 
   return (
     <div>
@@ -33,8 +47,21 @@ export default () => {
 
           <div className="person-page-content">
             <h2>{person.name}</h2>
-            <p>{`Sex: ${person.gender === 1 ? "F" : "M"}`}</p>
-            <p>{`Occupation: ${person.known_for_department}`}</p>
+
+            <div>
+              <p>
+                <strong>{trad[lang].sex}</strong>
+              </p>
+              <p>{` ${person.gender === 1 ? "F" : "M"}`}</p>
+            </div>
+
+            <div>
+              <p>
+                <strong>{trad[lang].occupation}</strong>
+              </p>
+              <p>{`${person.known_for_department}`}</p>
+            </div>
+
             <p>{person.biography}</p>
           </div>
         </div>

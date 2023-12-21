@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import LangContext from "./LangContext";
 
 export default ({
   id,
@@ -9,6 +11,23 @@ export default ({
   works,
   imagePath,
 }) => {
+  const lang = useContext(LangContext);
+
+  const trad = {
+    "en-US": {
+      occupation: "Occupation:",
+      sex: "Sex:",
+      popularity: "Popularyty:",
+      known: "Known for:",
+    },
+    "it-IT": {
+      occupation: "Occupazione:",
+      sex: "Sesso:",
+      popularity: "Popolarità:",
+      known: "Lavori famosi:",
+    },
+  };
+
   return (
     <Link to={`/person/${id}`} className="card">
       <figure>
@@ -20,10 +39,23 @@ export default ({
 
       <div className="card-content">
         <h3>{name}</h3>
-        <h4>{`Occupation: ${occupation}`}</h4>
-        <p>{`Sex: ${sex}`}</p>
-        <p>{`Popularity: ${popularity}`}</p>
-        <ul>{`Known for: ${works}`}</ul>
+        <div>
+          <h4>{trad[lang].occupation}</h4>
+          <h4>{occupation}</h4>
+        </div>
+
+        <div>
+          <p>{trad[lang].sex}</p>
+          <p>{sex}</p>
+        </div>
+
+        <div>
+          <p>{trad[lang].popularity}</p>
+          <p>{popularity}</p>
+        </div>
+
+        <p>{trad[lang].known}</p>
+        <ol>{works}</ol>
       </div>
     </Link>
   );

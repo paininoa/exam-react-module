@@ -1,13 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import SearchBar from "./SearchBar";
 import PersonCard from "./PersonCard";
+import LangContext from "./LangContext";
 const apiKey = import.meta.env.VITE_API_KEY;
 
 export default () => {
   const [searchedActors, setSearchedActors] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
-  console.log({ searchedActors });
-  console.log({ errorMessage });
+
+  const lang = useContext(LangContext);
+  const trad = {
+    "en-US": {
+      title: "Search Page",
+    },
+    "it-IT": {
+      title: "Pagina di ricerca",
+    },
+  };
 
   const search = async (searchValue) => {
     const searchParams = new URLSearchParams({
@@ -28,7 +37,7 @@ export default () => {
 
   return (
     <div>
-      <h2>Search Page</h2>
+      <h2>{trad[lang].title}</h2>
       <SearchBar onSearch={search} />
 
       <div className="cards-wrapper">
@@ -42,7 +51,9 @@ export default () => {
                 occupation={a.known_for_department}
                 sex={a.gender}
                 popularity={a.popularity}
-                //   works={[a.known_for]}
+                works={a.known_for.map((movie, i) => (
+                  <li key={`known_movie${i}`}>{movie.title}</li>
+                ))}
                 imagePath={`https://image.tmdb.org/t/p/w500${a.profile_path}`}
               />
             </>
