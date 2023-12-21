@@ -1,12 +1,13 @@
 import { useState } from "react";
 import "./App.scss";
 import About from "./Components/About";
+import HomePage from "./Components/HomePage";
 const apiKey = import.meta.env.VITE_API_KEY;
 
 function App() {
   return (
     <>
-      <h1>React module exam</h1>
+      <HomePage />
       <About />
     </>
   );
