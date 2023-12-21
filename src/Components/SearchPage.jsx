@@ -37,7 +37,7 @@ export default () => {
             <>
               <PersonCard
                 key={`actor_search_${i}`}
-                // id,
+                id={a.id}
                 name={a.name}
                 occupation={a.known_for_department}
                 sex={a.gender}

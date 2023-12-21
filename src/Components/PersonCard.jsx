@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default ({
   id,
   name,
@@ -8,7 +10,7 @@ export default ({
   imagePath,
 }) => {
   return (
-    <div className="card">
+    <Link to={`/person/${id}`} className="card">
       <figure>
         <img
           src={`https://image.tmdb.org/t/p/w500${imagePath}`}
@@ -23,6 +25,6 @@ export default ({
         <p>{`Popularity: ${popularity}`}</p>
         <ul>{`Known for: ${works}`}</ul>
       </div>
-    </div>
+    </Link>
   );
 };

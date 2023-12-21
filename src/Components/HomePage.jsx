@@ -5,8 +5,7 @@ const apiKey = import.meta.env.VITE_API_KEY;
 export default () => {
   const [persons, setPersons] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
-  // console.log(persons);
-  // console.log(errorMessage);
+  console.log(persons);
 
   useEffect(() => {
     fetch(`https://api.themoviedb.org/3/trending/person/day?api_key=${apiKey}`)
@@ -34,6 +33,7 @@ export default () => {
               return (
                 <PersonCard
                   key={`person ${i}`}
+                  id={p.id}
                   name={p.name}
                   occupation={p.known_for_department}
                   sex={p.gender === 1 ? "F" : "M"}
