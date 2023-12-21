@@ -2,6 +2,21 @@
   text-align: center;
 }
 
+.navbar {
+  padding: 1rem 3rem;
+  menu {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+  }
+  .navlink {
+    color: rgb(75, 203, 25);
+  }
+  .active {
+    color: rgb(189, 231, 189);
+  }
+}
+
 .cards-wrapper {
   width: 100%;
   margin-top: 3rem;
@@ -22,5 +37,19 @@
   }
   .card-content {
     padding: 1rem;
+  }
+}
+
+.search-wrapper {
+  width: 50%;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+
+  gap: 1rem;
+  input {
+    padding: 0.5rem;
+    flex-grow: 4;
   }
 }
