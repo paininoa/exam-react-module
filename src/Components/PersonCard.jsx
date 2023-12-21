@@ -13,7 +13,7 @@ export default ({
       <h4>{occupation}</h4>
       <p>{sex}</p>
       <p>{popularity}</p>
-      <p>{works}</p>
+      <ul>{works}</ul>
       <figure>
         <img
           src={`https://image.tmdb.org/t/p/w500${imagePath}`}
